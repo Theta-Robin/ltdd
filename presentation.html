@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LTD - Dossier de Candidature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e67e22;
+            --primary-dark: #d35400;
+            --secondary: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #27ae60;
+            --text: #333;
+            --text-light: #777;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-hover: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary-dark));
+            color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 40%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-in-out 0.3s both;
+        }
+
+        .logo {
+            text-align: center;
+            margin: 20px auto 0;
+            animation: fadeIn 1s ease-in-out 0.6s both;
+        }
+
+        .logo img {
+            max-width: 220px;
+            height: auto;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 8px rgba(230, 126, 34, 0.4));
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 12px rgba(230, 126, 34, 0.6));
+        }
+
+        .section {
+            background-color: white;
+            padding: 35px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .section:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid rgba(230, 126, 34, 0.2);
+            padding-bottom: 8px;
+            margin-top: 0;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        h2:hover:after {
+            width: 70px;
+        }
+
+        h3 {
+            color: var(--primary-dark);
+            margin-top: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        h3:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        p {
+            margin: 15px 0;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .checklist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .checklist li {
+            flex: 1 0 200px;
+            position: relative;
+            padding-left: 30px;
+            color: var(--text);
+        }
+
+        .checklist li:before {
+            content: "✓";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .profile-card {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .profile-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .profile-card:hover .profile-pic {
+            transform: rotate(5deg);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            color: var(--primary);
+            margin: 0 0 8px 0;
+            font-size: 1.4rem;
+        }
+
+        .profile-role {
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .profile-text {
+            margin: 0;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 30px 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .timeline-item.none {
+            left: 0;
+            width: 100%;
+        }
+
+        .timeline-item.left {
+            left: 0;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .timeline-item.left::after {
+            right: -12px;
+        }
+
+        .timeline-item.right::after {
+            left: -12px;
+        }
+
+        .timeline-item:hover::after {
+            transform: scale(1.1);
+        }
+
+        .timeline-content {
+            padding: 20px 25px;
+            background-color: white;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .timeline-text {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .contact-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .contact-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            margin: 5px 0;
+            color: var(--text);
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary-dark));
+            color: white;
+            border-radius: 12px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-pic {
+                margin: 0 auto 15px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item.left,
+            .timeline-item.right {
+                left: 0;
+            }
+
+            .timeline-item.left::after,
+            .timeline-item.right::after {
+                left: 20px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .feature-item {
+            flex: 1 0 200px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+        }
+
+        .feature-description {
+            color: var(--text);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dossier de Candidature <span>LTD</span></h1>
+        <p class="subtitle">Reprise et Modernisation de LTD</p>
+        <div class="logo">
+            <img src="ltd.jpg" alt="Logo LTD">
+        </div>
+    </header>
+
+    <div class="section">
+        <h2>📌 1. Présentation du Projet</h2>
+        <h3>Nom de l’entreprise</h3>
+        <p><strong>LTD</strong> (reprise et modernisation)</p>
+
+        <h3>Secteur d’activité</h3>
+        <ul>
+            <li><strong>Divertissement</strong> (soirées à thème, tombolas, événements communautaires)</li>
+        </ul>
+
+        <h3>Objectif principal</h3>
+        <p>Redynamiser <strong>LTD</strong>, un commerce historique de Sandy Shores, en :</p>
+
+        <ul class="checklist">
+            <li>Relançant l’activité économique dans un quartier en déclin</li>
+            <li>Créant un lieu de vie sociale (repas, boissons, événements)</li>
+            <li>Offrant des emplois stables avec une gestion transparente et motivante</li>
+            <li>Développant un système comptable innovant pour une gestion optimale</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>💎 Valeurs de l’entreprise</h2>
+        <ul>
+            <li><strong>Qualité</strong> : Produits frais et service irréprochable</li>
+            <li><strong>Convivialité</strong> : Lieu de rencontre pour les habitants et les travailleurs</li>
+            <li><strong>Innovation</strong> : Utilisation d’outils modernes (comptabilité digitale, promotions interactives)</li>
+            <li><strong>Responsabilité</strong> : Gestion éthique des salaires et des primes</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎭 5. Présentation RP</h2>
+
+        <div class="profile-card">
+            <img src="https://via.placeholder.com/130" alt="Roberto Di Biasio" class="profile-pic">
+            <div class="profile-info">
+                <h3 class="profile-name">Roberto Di Biasio</h3>
+                <h4 class="profile-role">Gérant de LTD</h4>
+                <p class="profile-text">"Hola, je m’appelle Roberto Di Biasio, originaire de Madrid. Je suis arrivé à Los Santos il y a un mois, et j’ai tout de suite été séduit par l’énergie de Sandy Shores. J’ai travaillé à la pizzeria de LS, où j’ai appris l’importance d’un service rapide et d’une gestion rigoureuse. Quand j’ai entendu parler de LTD, j’ai vu une opportunité : redonner vie à ce lieu emblématique en y ajoutant ma touche espagnole – convivialité, qualité, et une pointe de folie ! Je veux faire de ce magasin un endroit où les gens se retrouvent, mangent bien, et s’amusent. Et surtout… où les employés sont fiers de travailler !"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>👨‍💻 HRP – Robin (Développeur Web)</h2>
+        <div class="profile-card">
+            <img src="https://via.placeholder.com/130" alt="Robin" class="profile-pic">
+            <div class="profile-info">
+                <h3 class="profile-name">Robin</h3>
+                <h4 class="profile-role">Développeur Web & Gestionnaire</h4>
+                <p class="profile-text">"Je m’appelle Robin, j’ai 23 ans, et je suis développeur web full-stack. Mon objectif ? Créer des outils <strong>simples, efficaces et esthétiques</strong> pour faciliter la gestion de l’entreprise. Voici ce que je propose :</p>
+                <ul>
+                    <li><strong>Un site web RP</strong> pour LTD (menu interactif, réservation en ligne, annonces d’événements)</li>
+                    <li><strong>Un système comptable complet</strong> (voir section 7) avec suivi en temps réel</li>
+                </ul>
+                <p class="profile-text">Je suis quelqu’un de méthodique, mais aussi très sociable. Je sais m’adapter aux besoins de l’équipe et je m’investis à 100% dans les projets qui me tiennent à cœur. Mon but ? Faire de LTD une référence en termes de gestion et d’innovation dans le RP."</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📜 6. Background de l’Entreprise</h2>
+        <h3>Histoire de LTD</h3>
+        <p>LTD était autrefois un lieu incontournable de Sandy Shores, connu pour son commerce et son ambiance chaleureuse. Malheureusement, faute de gestion et de dynamisme, l’entreprise a périclité, laissant un local vide et une clientèle nostalgique.</p>
+
+        <h3>Pourquoi reprendre ce commerce ?</h3>
+        <ul>
+            <li><strong>Emplacement stratégique</strong> : Proche de la route principale, des stations-service et des zones industrielles (clients réguliers)</li>
+            <li><strong>Potentiel inexploité</strong> : Peu de concurrence directe à Sandy Shores</li>
+            <li><strong>Communauté fidèle</strong> : Les habitants de Sandy adorent les lieux de rassemblement</li>
+            <li><strong>Opportunité économique</strong> : Besoin croissant de services (mineurs, policiers, chauffeurs)</li>
+        </ul>
+
+        <h3>Notre vision</h3>
+        <p>Faire de LTD <strong>le QG de Sandy Shores</strong> – un endroit où :</p>
+        <ul>
+            <li>Les travailleurs viennent déjeuner</li>
+            <li>Les motards se retrouvent après une virée</li>
+            <li>Les familles célèbrent les anniversaires</li>
+            <li>Les joueurs organisent des événements RP</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎯 9. Objectifs (Court, Moyen, Long Terme)</h2>
+
+        <h3>🔹 Court terme (1-3 mois)</h3>
+        <ul>
+            <li><strong>Stabiliser l’équipe</strong> : Former 5-6 employés motivés et fiables</li>
+            <li><strong>Relancer l’activité</strong> :
+                <ul>
+                    <li>Atteindre <strong>400 ventes/jour</strong></li>
+                    <li>Organiser <strong>2 événements par semaine</strong> (tombolas, concerts, etc.)</li>
+                </ul>
+            </li>
+            <li><strong>Améliorer la visibilité</strong> :
+                <ul>
+                    <li>Créer une <strong>page RP</strong> (site web ou forum) pour annoncer les menus et événements</li>
+                    <li>Distribuer des <strong>flyers RP</strong> dans Sandy Shores</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>🔹 Moyen terme (3-6 mois)</h3>
+        <ul>
+            <li><strong>Agrandir l’équipe</strong> : Recruter 2 runners et 1 vendeur supplémentaire</li>
+            <li><strong>Développer les partenariats</strong> :
+                <ul>
+                    <li>Avec les <strong>entreprises locales</strong> (mine, garage, police)</li>
+                    <li>Avec les <strong>gangs</strong> (réductions pour les membres, événements exclusifs)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>🔹 Long terme (6-12 mois)</h3>
+        <ul>
+            <li><strong>Ouvrir un 2ème établissement</strong> :
+                <ul>
+                    <li>À <strong>Paleto Bay</strong> ou <strong>Grapeseed</strong> pour couvrir plus de zones</li>
+                </ul>
+            </li>
+            <li><strong>Devenir un lieu incontournable</strong> :
+                <ul>
+                    <li>Organiser des <strong>tournois inter-villes</strong> (courses de voitures, concerts)</li>
+                </ul>
+            </li>
+            <li><strong>Développer notre présence en ligne</strong> :
+                <ul>
+                    <li>Créer une <strong>chaîne Instagram</strong> pour promouvoir les événements</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>💰 7. Comptabilité (Système Développé par Robin)</h2>
+
+        <h3>📊 Tableau de Bord Principal</h3>
+        <div class="feature-list">
+            <div class="feature-item">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Chiffre d’affaires (CA) global</div>
+                <div class="feature-description">Suivi en temps réel pour une gestion optimale de l'activité.</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🏆</div>
+                <div class="feature-title">Top 5 des produits</div>
+                <div class="feature-description">Identification des produits les plus vendus pour ajuster le stock.</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📈</div>
+                <div class="feature-title">Graphiques</div>
+                <div class="feature-description">Analyse des ventes par jour/semaine/mois, nombre de commandes par heure, et répartition des ventes .</div>
+            </div>
+        </div>
+
+        <h3>👨‍🍳 Gestion des Employés</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Grade</th>
+                    <th>Salaire de base</th>
+                    <th>Prime</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Débutant</td>
+                    <td>20 000$/h (vendeur)</td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>Intermédiaire</td>
+                    <td>20 000$/h</td>
+                    <td>25%</td>
+                </tr>
+                <tr>
+                    <td>Expérimenté</td>
+                    <td>20 000$/h</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>Expérimenté</td>
+                    <td>20 000$/h</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>RH</td>
+                    <td>20 000$/h</td>
+                    <td>35%</td>
+                </tr>
+                <tr>
+                    <td>CO patron</td>
+                    <td>20 000$/h</td>
+                    <td>40%</td>
+                </tr>
+                <tr>
+                    <td> patron</td>
+                    <td>20 000$/h</td>
+                    <td>45%</td>
+                </tr>
+                <tr>
+                    <td>Runner</td>
+                    <td>120 000$/run</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Fonctionnalités</h4>
+        <ul>
+            <li><strong>Badges colorés</strong> pour identifier les grades (ex : 🟢 Débutant, 🟡 Intermédiaire, 🔴 Expérimenté)</li>
+            <li><strong>Système de primes</strong> :
+                <ul>
+                    <li><em>Prime de performance</em> : Basée sur le nombre de ventes</li>
+                </ul>
+            </li>
+            <li><strong>Historique des salaires</strong> : Exportable en PDF pour transparence</li>
+        </ul>
+
+        <h3>🛒 Système de Ventes</h3>
+        <ul>
+            <li><strong>Suivi des transactions</strong> :
+                <ul>
+                    <li>Date, heure, employé, montant, produits vendus</li>
+                    <li>Photos des produits (pour éviter les erreurs)</li>
+                </ul>
+            </li>
+            <li><strong>Filtrage avancé</strong> :
+                <ul>
+                    <li>Par employé, par produit, par période</li>
+                </ul>
+            </li>
+            <li><strong>Export des données</strong> :
+                <ul>
+                    <li>Pour analyse ou partage avec les actionnaires</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>🔒 Sécurité & Gestion</h3>
+        <ul>
+            <li><strong>Login sécurisé</strong> : Code à 10 chiffres </li>
+            <li><strong>Rôles d’accès</strong> :
+                <ul>
+                    <li><em>Gérant</em> : Accès total</li>
+                    <li><em>Responsable</em> : Gestion des employés et des ventes</li>
+                    <li><em>Employé</em> : Consultation de son salaire et de ses primes</li>
+                </ul>
+            </li>
+            <li><strong>Sauvegardes automatiques</strong> : Toutes les 24h</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📱 10. Stratégie Sociale</h2>
+        <p>Pour maximiser notre visibilité et notre impact, nous prévoyons de développer une forte présence sur les réseaux sociaux :</p>
+
+        <div class="social-strategy">
+            <div class="social-platform">
+                <h3>Instagram</h3>
+                <ul>
+                    <li>Publication quotidienne de photos des plats, événements et moments forts</li>
+                    <li>Stories interactives avec sondages et questions aux followers</li>
+                    <li>Reels montrant l'ambiance et les événements spéciaux</li>
+                    <li>Collaborations avec des influenceurs locaux</li>
+                </ul>
+            </div>
+
+            <div class="social-platform">
+                <h3>Discord</h3>
+                <ul>
+                    <li>Création d'un serveur dédié avec :
+                        <ul>
+                            <li>Un salon pour les annonces officielles</li>
+                            <li>Un salon pour les événements et réservations</li>
+                            <li>Un salon pour les employés</li>
+                        </ul>
+                    </li>
+                    <li>Intégration avec le site web pour les réservations</li>
+                    <li>Bots pour les annonces automatiques et les rappels</li>
+                </ul>
+            </div>
+
+            <div class="social-platform">
+                <h3>Site Web</h3>
+                <ul>
+                    <li>Menu interactif avec photos et descriptions détaillées</li>
+                    <li>Système de réservation en ligne</li>
+                    <li>Calendrier des événements avec inscriptions</li>
+                    <li>Blog avec actualités et coulisses de LTD</li>
+                    <li>Galerie photo des événements passés</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📞 7. Contact</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Discord de l'entreprise</h3>
+                <p>LTD_RP</p>
+                <p>(lien à venir)</p>
+            </div>
+            <div class="contact-item">
+                <h3>Discord personnel (Roberto/HRP)</h3>
+                <p>@robin_discord</p>
+            </div>
+            <div class="contact-item">
+                <h3>Site web RP</h3>
+                <p>En cours de développement</p>
+                <p>(disponible sous 2 semaines)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Conclusion</h2>
+        <p>LTD n'est pas qu'un simple MAGASIN : c'est un projet ambitieux qui vise à :</p>
+        <ul>
+            <li>Redonner vie à Sandy Shores en créant un lieu de rencontre</li>
+            <li>Offrir des emplois stables avec une gestion transparente</li>
+            <li>Innover avec des outils comptables modernes et des événements uniques</li>
+            <li>Devenir une référence dans le RP économique de GTA</li>
+        </ul>
+
+        <p>Nous sommes motivés, organisés et prêts à nous investir pour faire de ce projet un succès. Nous espérons obtenir votre validation pour commencer cette aventure !</p>
+
+        <div class="signature">
+            Signé,<br>
+            Roberto Di Biasio & l'équipe de LTD
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 LTD - Tous droits réservés</p>
+    </footer>
+</body>
+</html>
